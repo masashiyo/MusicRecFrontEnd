@@ -1,0 +1,61 @@
+.App {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('images/heartBackground.jpg');
+    background-size: cover; /* Ensures the background image covers the entire container */
+  background-position: center; /* Centers the background image */
+  }
+
+  /* CSS for Container */
+  .container {
+    text-align: center;
+  }
+
+  /* CSS for Heading */
+  h1 {
+    color: #e73163;
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  /* CSS for Subheading */
+  p {
+    color: #333;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+  }
+
+  /* CSS for Button */
+  .btn {
+    background-color: #e73163;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #c9274e;
+  }

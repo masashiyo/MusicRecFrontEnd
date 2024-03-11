@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../vDayStyles.css';
+// import '../vDayStyles.css';
 
 function App() {
   const [yesButtonSize, setYesButtonSize] = useState(100);

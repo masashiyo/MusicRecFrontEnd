@@ -66,11 +66,6 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Adjust margin for the last artist card */
-.artist-card:last-child {
-  margin-right: 0;
-}
-
 .artist-image {
   width: 100px;
   height: 100px;

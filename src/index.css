@@ -38,10 +38,11 @@ header {
 
 /* Button styles */
 .button {
+  margin: 20px;
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #1DB954;
+  background-color: #191414;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -50,7 +51,7 @@ header {
 }
 
 .button:hover {
-  background-color: #14843d;
+  background-color: #006124;
 }
 
 /* Artist card styles */

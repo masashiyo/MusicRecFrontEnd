@@ -119,10 +119,10 @@ const TopTracksAndArtists = () => {
       <div className="artist-section">
         <h2 className="artist-title">{currentButtonClicked}</h2>
         <div className="artist-list">
-        {fetching ? <h1>Loading...</h1> 
-            :
-            (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
-        }
+          {fetching ? <h1>Loading...</h1> 
+              :
+              (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
+          }
         </div>
       </div>
     </div>

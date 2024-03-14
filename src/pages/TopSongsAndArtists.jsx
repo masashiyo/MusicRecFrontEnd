@@ -69,6 +69,19 @@ const TopTracksAndArtists = () => {
     <div className="container">
       <header className="header">
         <h1 className="title">Get most listened to artists or tracks!</h1>
+        <br></br>
+        <div>
+          <label>Short Term </label>
+          <input type="radio" id="shortTerm" name="term" value="short_term"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label>Medium Term </label>
+          <input type="radio" id="mediumTerm" name="term" value="medium_term"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <label>Long Term </label>
+          <input type="radio" id="longTerm" name="term" value="long_term"></input>
+        </div><br></br>
+        <label># of Artists/Tracks </label>
+        <div>
+          <input type="text" id="number"></input>
+        </div><br></br>
         <button className="button" onClick={getTopArtists}>Get Artists</button>
         <button className="button" onClick={getTopTracks}>Get Tracks</button>
       </header>

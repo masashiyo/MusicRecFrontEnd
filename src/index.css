@@ -61,8 +61,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 20px; /* Add vertical margin */
-  margin-right: 20px; /* Add horizontal margin */
+  margin-bottom: 10px; /* Add vertical margin */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 

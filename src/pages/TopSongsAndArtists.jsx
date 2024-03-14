@@ -9,17 +9,23 @@ const TopTracksAndArtists = () => {
   const [mappedTracks, setMappedTracks] = useState([]);
   const [currentButtonClicked, setCurrentButtonClicked] = useState('');
   const [fetching, setFetching] = useState(false);
+  const [selectedTerm, setSelectedTerm] = useState('short_term');
+  const [number, setNumber] = useState('10');
 
-  const fetchData = (endpoint, setterFunction, buttonClickedSetter) => {
+
+  const fetchData = (endpoint, setterFunction, buttonClickedSetter, selectedTerm, number) => {
+    if (validateInfo(selectedTerm, number)) {
+      return;
+    }
     setFetching(true);
     setCurrentButtonClicked(buttonClickedSetter);
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        limit: 10,
+        limit: number,
         offset: 0,
-        timeRange: 'long_term'
+        timeRange: selectedTerm
       })
     };
   
@@ -33,11 +39,11 @@ const TopTracksAndArtists = () => {
   };
   
   const getTopArtists = () => {
-    fetchData('user-top-artists', setUserTopArtists, 'Artists');
+    fetchData('user-top-artists', setUserTopArtists, 'Artists', selectedTerm, number);
   };
   
   const getTopTracks = () => {
-    fetchData('user-top-tracks', setUserTopTracks, 'Tracks');
+    fetchData('user-top-tracks', setUserTopTracks, 'Tracks', selectedTerm, number);
   };
   
 
@@ -56,6 +62,30 @@ const TopTracksAndArtists = () => {
     }
   }, [userTopArtists, userTopTracks])
 
+  const handleTermChange = (event) => {
+    setSelectedTerm(event.target.value);
+  };
+
+  const handleNumberChange = (event) => {
+    setNumber(event.target.value)
+  }
+
+
+  const validateInfo = (selectedTerm, number) => {
+    let errors = [];
+    if(selectedTerm === "") {
+      errors.push("Term must be selected")
+    }
+    if(number < 0 || number > 50 || Number.isInteger(number)) {
+      errors.push("Number must be an integer between 1 and 50")
+    }
+    if(errors.length > 0) {
+      window.alert(errors)
+      return true
+    }
+    return false
+  }
+
 //TODO I will need to condense the code to make it more efficient but for now this will do
 
   return (
@@ -66,21 +96,21 @@ const TopTracksAndArtists = () => {
         <div>
 
           <label>Short Term&nbsp;&nbsp;
-            <input type="radio" id="shortTerm" name="term" value="short_term"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange}></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
 
           <label>Medium Term&nbsp;&nbsp;
-            <input type="radio" id="mediumTerm" name="term" value="medium_term"></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange}></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           
           <label>Long Term&nbsp;&nbsp;
-            <input type="radio" id="longTerm" name="term" value="long_term"></input>
+            <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange}></input>
           </label>
             
         </div><br></br>
         <label># of Artists/Tracks
           <div>
-            <input type="text" id="number"></input>
+            <input type="text" id="number" onChange={handleNumberChange} value={number}></input>
           </div><br></br>
         </label>
         <button className="button" onClick={getTopArtists}>Get Artists</button>
@@ -92,7 +122,7 @@ const TopTracksAndArtists = () => {
         {fetching ? <h1>Loading...</h1> 
             :
             (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
-          }
+        }
         </div>
       </div>
     </div>

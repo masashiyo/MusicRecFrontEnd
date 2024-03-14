@@ -92,22 +92,19 @@ const TopTracksAndArtists = () => {
     <div className="container">
       <header className="header">
         <h1 className="title">Get most listened to artists or tracks!</h1>
-        <br></br>
-        <div>
-
+        <div className="trackAndArtistNumber">
           <label>Short Term&nbsp;&nbsp;
-            <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange}></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange}></input>
           </label>
 
           <label>Medium Term&nbsp;&nbsp;
-            <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange}></input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange}></input>
           </label>
           
           <label>Long Term&nbsp;&nbsp;
             <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange}></input>
           </label>
-            
-        </div><br></br>
+        </div>
         <label># of Artists/Tracks
           <div>
             <input type="text" id="number" onChange={handleNumberChange} value={number}></input>
@@ -117,7 +114,7 @@ const TopTracksAndArtists = () => {
         <button className="button" onClick={getTopTracks}>Get Tracks</button>
       </header>
       <div className="artist-section">
-        <h2 className="artist-title">{currentButtonClicked}</h2>
+        <h1 className="artist-title">{!fetching ? currentButtonClicked : ""}</h1>
         <div className="artist-list">
           {fetching ? <h1>Loading...</h1> 
               :

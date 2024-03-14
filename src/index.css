@@ -95,3 +95,11 @@ header {
   color: #666;
 }
 
+.trackAndArtistNumber {
+  margin: 20px;
+}
+
+label {
+  margin: 30px;
+}
+

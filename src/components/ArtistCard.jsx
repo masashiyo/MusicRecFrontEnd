@@ -10,7 +10,9 @@ const ArtistCard = (props) => {
 
   return (
     <div className="artist-card">
-      <img src={props.artist.images[0].url} alt={props.artist.name} className="artist-image" />
+      <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank">
+        <img src={props.artist.images[0].url} alt={props.artist.name} className="artist-image" />
+      </a>
       <div className="artist-details">
         <h3 className="artist-name">{props.artist.name}</h3>
         <p className="artist-genre" >Genre: {formattedGenres}</p>

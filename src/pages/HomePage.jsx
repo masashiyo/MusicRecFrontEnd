@@ -3,7 +3,7 @@ import React from 'react';
 function HomePage() {
 
   const handleSpotifyAPIOAuth = () => {
-    fetch("http://localhost:8080/api/login")
+    fetch("http://localhost:8080/auth/login")
     .then((response) => response.text())
     .then(response => {
       window.location.replace(response)

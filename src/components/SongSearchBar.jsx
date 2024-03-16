@@ -10,18 +10,20 @@ const SongSearchBar = () => {
 
     const handleChange = (event) => {
         setSearchValue(event.target.value);
-
+    };
+    
+    useEffect(() => {
         clearTimeout(timeoutRef.current);
 
         // Set new timeout
         timeoutRef.current = setTimeout(() => {
-            if (event.target.value.trim() !== '') {
-                fetchResults(event.target.value);
+            if (searchValue.trim() !== '') {
+                fetchResults(searchValue);
             } else {
                 setRawSearchResults([]);
             }
         }, 700);
-    };
+    },[searchValue])
 
     const fetchResults = async (value) => {
         try {
@@ -41,12 +43,12 @@ const SongSearchBar = () => {
         }
     };
 
-    useEffect(() => {
-        const formattedSearchResults = rawSearchResults.map((result) => {
-            return <SearchResultTile key={result.id} result={result} />
-          })
-          setSearchResults(formattedSearchResults)
-    },[rawSearchResults])
+    // useEffect(() => {
+    //     const formattedSearchResults = rawSearchResults.map((result) => {
+    //         return <SearchResultTile key={result.id} result={result} />
+    //       })
+    //       setSearchResults(formattedSearchResults)
+    // },[rawSearchResults])
     
 
     return (

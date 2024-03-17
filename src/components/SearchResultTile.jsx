@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 
 const SearchResultTile = () => {
-    const {title} = props
+    const { track } = props
     return (
-        <div>{props.title}</div>
+        <div>{props.track.name}</div>
     )
 }
 

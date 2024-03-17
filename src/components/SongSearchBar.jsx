@@ -3,9 +3,10 @@ import SearchResultTile from './SearchResultTile';
 
 const SongSearchBar = () => {
     const [searchValue, setSearchValue] = useState('');
-    const [searchResults, setSearchResults] = useState(['something','test','test2','test523']);
-    const [rawSearchResults, setRawSearchResults] = useState(['something','test','test2','test523']);
+    const [searchResults, setSearchResults] = useState([]);
+    const [rawSearchResults, setRawSearchResults] = useState([]);
     const timeoutRef = useRef(null);
+    const [containsData, setContainsData] = useState(false);
 
 
     const handleChange = (event) => {
@@ -31,7 +32,7 @@ const SongSearchBar = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  query: searchValue,
+                  query: value,
                 })
               };
             const response = await fetch(`http://localhost:8080/auth/songSearch`,requestOptions);
@@ -43,12 +44,15 @@ const SongSearchBar = () => {
         }
     };
 
-    // useEffect(() => {
-    //     const formattedSearchResults = rawSearchResults.map((result) => {
-    //         return <SearchResultTile key={result.id} result={result} />
-    //       })
-    //       setSearchResults(formattedSearchResults)
-    // },[rawSearchResults])
+    useEffect(() => {
+        const formattedSearchResults = rawSearchResults.map((result) => {
+            return <div>{result.name}</div>
+          })
+          if(formattedSearchResults.length > 0) {
+            setContainsData(true)
+            setSearchResults(formattedSearchResults)
+          }
+    },[rawSearchResults])
     
 
     return (
@@ -61,6 +65,7 @@ const SongSearchBar = () => {
             />
             <ul className="search-results">
             </ul>
+                {containsData ? formattedSearchResults : null}
         </div>
     );
 }

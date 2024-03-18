@@ -46,27 +46,31 @@ const SongSearchBar = () => {
 
     useEffect(() => {
         const formattedSearchResults = rawSearchResults.map((result) => {
-            return <div>{result.name}</div>
+            return <SearchResultTile track={result}/>
           })
           if(formattedSearchResults.length > 0) {
-            setContainsData(true)
             setSearchResults(formattedSearchResults)
           }
     },[rawSearchResults])
     
 
     return (
-        <div className="search-bar">
-            <input
+        <>
+            <div className="search-bar">
+                <input
                 type="text"
                 placeholder="Search..."
                 value={searchValue}
                 onChange={handleChange}
-            />
-            <ul className="search-results">
-            </ul>
-                {containsData ? formattedSearchResults : null}
-        </div>
+                />
+                <ul className="search-results">
+                </ul>
+            </div>
+            <div>
+                {searchResults.length > 0 ? searchResults : ''}
+            </div>
+        </>
+
     );
 }
 

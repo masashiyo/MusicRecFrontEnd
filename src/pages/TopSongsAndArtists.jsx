@@ -14,9 +14,6 @@ const TopTracksAndArtists = () => {
 
 
   const fetchData = (endpoint, setterFunction, buttonClickedSetter, selectedTerm, number) => {
-    if (validateInfo(selectedTerm, number)) {
-      return;
-    }
     setFetching(true);
     setCurrentButtonClicked(buttonClickedSetter);
     const requestOptions = {
@@ -39,10 +36,16 @@ const TopTracksAndArtists = () => {
   };
   
   const getTopArtists = () => {
+    if(validateInfo(selectedTerm, number))
+      return;
+    setMappedArtists();
     fetchData('user-top-artists', setUserTopArtists, 'Artists', selectedTerm, number);
   };
   
   const getTopTracks = () => {
+    if(validateInfo(selectedTerm, number))
+      return;
+    setMappedTracks();
     fetchData('user-top-tracks', setUserTopTracks, 'Tracks', selectedTerm, number);
   };
   
@@ -76,7 +79,7 @@ const TopTracksAndArtists = () => {
     if(selectedTerm === "") {
       errors.push("Term must be selected")
     }
-    if(number < 0 || number > 50 || Number.isInteger(number)) {
+    if (number < 0 || number > 50 || isNaN(parseInt(number)) || !Number.isInteger(parseFloat(number))) {
       errors.push("Number must be an integer between 1 and 50")
     }
     if(errors.length > 0) {
@@ -89,40 +92,41 @@ const TopTracksAndArtists = () => {
 //TODO I will need to condense the code to make it more efficient but for now this will do
 
   return (
-    <div className="container">
-      <header className="header">
-        <h1 className="title">Get most listened to artists or tracks!</h1>
-        <div className="trackAndArtistNumber">
-          <label>Short Term&nbsp;&nbsp;
-            <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange}></input>
-          </label>
-
-          <label>Medium Term&nbsp;&nbsp;
-            <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange}></input>
-          </label>
-          
-          <label>Long Term&nbsp;&nbsp;
-            <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange}></input>
-          </label>
-        </div>
-        <label># of Artists/Tracks
-          <div>
-            <input type="text" id="number" onChange={handleNumberChange} value={number}></input>
-          </div><br></br>
+    <div>
+    <header className="bg-green-500 text-white py-6 flex flex-col items-center">
+      <h1 className="text-5xl mb-20 mt-6">Most Listened to Artists and Tracks</h1>
+      <div className="trackAndArtistNumber flex justify-center mb-4">
+        <label className="mr-6">
+          Short Term&nbsp;&nbsp;
+          <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange} />
         </label>
-        <button className="button" onClick={getTopArtists}>Get Artists</button>
-        <button className="button" onClick={getTopTracks}>Get Tracks</button>
-      </header>
-      <div className="artist-section">
-        <h1 className="artist-title">{!fetching ? currentButtonClicked : ""}</h1>
-        <div className="artist-list">
-          {fetching ? <h1>Loading...</h1> 
-              :
-              (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
-          }
-        </div>
+        <label className="mr-6">
+          Medium Term&nbsp;&nbsp;
+          <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange} />
+        </label>
+        <label>
+          Long Term&nbsp;&nbsp;
+          <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange} />
+        </label>
+      </div>
+      <div className=''>
+        <label className="block mb-4 text-center">
+          Number of Artists/Tracks
+          <input type="text" id="number" onChange={handleNumberChange} value={number} className="block mt-2 w-full text-black" />
+        </label>
+      </div>
+      <div className="flex">
+        <button className="button mr-4 transition duration-300 ease-in-out hover:bg-green-700 p-3 rounded-lg border border-white" onClick={getTopArtists}>Get Artists</button>
+        <button className="button transition duration-300 ease-in-out hover:bg-green-700 p-3 rounded-lg border border-white" onClick={getTopTracks}>Get Tracks</button>
+      </div>
+    </header>
+    <div className="justify-center">
+      <h1 className="text-6xl m-10 text-center">{!fetching ? currentButtonClicked : ""}</h1>
+      <div className="flex flex-col items-center">
+        {fetching ? <h1 className='text-6xl'>Loading...</h1> : (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)}
       </div>
     </div>
+  </div>
   )
 }
 

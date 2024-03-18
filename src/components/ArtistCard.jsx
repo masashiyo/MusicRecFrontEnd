@@ -9,14 +9,14 @@ const ArtistCard = (props) => {
   }
 
   return (
-    <div className="artist-card">
-      <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank">
-        <img src={props.artist.images[0].url} alt={props.artist.name} className="artist-image" />
+    <div className="flex justify-center color-black border-2 border-[#ccc] rounded-lg mb-10 p-5 w-[80%]">
+      <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank" className='w-24 h-24 mr-10'>
+        <img src={props.artist.images[0].url} alt={props.artist.name} className="w-24 h-24 rounded-full mr-20" />
       </a>
-      <div className="artist-details">
-        <h3 className="artist-name">{props.artist.name}</h3>
-        <p className="artist-genre" >Genre: {formattedGenres}</p>
-        <p className="artist-popularity">Popularity: {props.artist.popularity}</p>
+      <div className="grow">
+        <h3 className="m-0 text-2xl">{props.artist.name}</h3>
+        <p className="mt-5 text-lg" >Genre: {formattedGenres}</p>
+        <p className="text-lg">Popularity: {props.artist.popularity}</p>
       </div>
     </div>
   );

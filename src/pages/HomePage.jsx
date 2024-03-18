@@ -11,10 +11,10 @@ function HomePage() {
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Simple Log in to Spotify Page</h1>
-        <button className="button" onClick={handleSpotifyAPIOAuth}>Log in to Spotify</button>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <header className="text-center">
+        <h1 className='text-6xl font-bold mb-8'>Spotify Music Tracking App</h1>
+        <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded duration-300 ease-in-out" onClick={handleSpotifyAPIOAuth}>Log in to Spotify</button>
       </header>
     </div>
   );

@@ -5,7 +5,10 @@ const SongRecommendation = () => {
 
     
     return(
-        <SongSearchBar/>
+        <div className='text-3xl font-bold mt-5'>
+            <h1>Song Recommendations</h1>
+            <SongSearchBar/>
+        </div>
     )
 }
 

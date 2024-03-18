@@ -1,11 +1,12 @@
-/* Reset default browser styles */
-* {
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Global styles */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -19,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* Header styles */
+
 header {
   background-color: #1DB954;
   color: #fff;
@@ -36,7 +37,7 @@ header {
   font-size: 18px;
 }
 
-/* Button styles */
+
 .button {
   margin: 20px;
   display: inline-block;
@@ -54,7 +55,7 @@ header {
   background-color: #006124;
 }
 
-/* Artist card styles */
+
 .artist-card {
   display: flex;
   align-items: center;
@@ -62,7 +63,7 @@ header {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 10px; /* Add vertical margin */
+  margin-bottom: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -101,5 +102,5 @@ header {
 
 label {
   margin: 30px;
-}
+} */
 

@@ -6,8 +6,6 @@ const SongSearchBar = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [rawSearchResults, setRawSearchResults] = useState([]);
     const timeoutRef = useRef(null);
-    const [containsData, setContainsData] = useState(false);
-
 
     const handleChange = (event) => {
         setSearchValue(event.target.value);
@@ -56,17 +54,16 @@ const SongSearchBar = () => {
 
     return (
         <>
-            <div className="search-bar">
+            <div className='text-center'>
                 <input
+                className='rounded-lg text-5xl border border-[#ccc]'
                 type="text"
                 placeholder="Search..."
                 value={searchValue}
                 onChange={handleChange}
                 />
-                <ul className="search-results">
-                </ul>
             </div>
-            <div>
+            <div className='block'>
                 {searchResults.length > 0 ? searchResults : ''}
             </div>
         </>

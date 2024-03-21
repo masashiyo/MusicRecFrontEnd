@@ -1,15 +1,34 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchResultTile from './SearchResultTile';
+import TrackCard from './TrackCard';
 
 const SongSearchBar = () => {
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [rawSearchResults, setRawSearchResults] = useState([]);
     const timeoutRef = useRef(null);
+    const[trackList, setTrackList] = useState([]);
+    const[mappedTracks, setMappedTracks] = useState()
 
     const handleChange = (event) => {
         setSearchValue(event.target.value);
     };
+
+    const handleTrackClick = (track) => {
+        let tempTrackList = trackList;
+        if(!tempTrackList.some((trackItem) => trackItem.id === track.id) && tempTrackList.length < 5) {
+            tempTrackList.push(track)
+            setTrackList(tempTrackList)
+            setSearchValue('')
+            setSearchResults('')
+            if(trackList.length > 0) {
+                const trackData = trackList.map((track) => {
+                  return <TrackCard key={track.id} track={track} />
+                })
+                setMappedTracks(trackData)
+            }
+        }
+    }
     
     useEffect(() => {
         clearTimeout(timeoutRef.current);
@@ -20,6 +39,7 @@ const SongSearchBar = () => {
                 fetchResults(searchValue);
             } else {
                 setRawSearchResults([]);
+                setSearchResults([]);
             }
         }, 700);
     },[searchValue])
@@ -44,7 +64,7 @@ const SongSearchBar = () => {
 
     useEffect(() => {
         const formattedSearchResults = rawSearchResults.map((result) => {
-            return <SearchResultTile track={result}/>
+            return <SearchResultTile handleTrackClick={handleTrackClick} track={result}/>
           })
           if(formattedSearchResults.length > 0) {
             setSearchResults(formattedSearchResults)
@@ -54,17 +74,20 @@ const SongSearchBar = () => {
 
     return (
         <>
-            <div className='text-center'>
+            <div className='text-left w-8/12 mx-auto'>
                 <input
-                className='rounded-lg text-5xl border border-[#ccc]'
+                className='rounded-lg text-5xl border border-[#ccc] w-full'
                 type="text"
                 placeholder="Search..."
                 value={searchValue}
                 onChange={handleChange}
                 />
-            </div>
-            <div className='block'>
+            <div className='absolute w-8/12'>
                 {searchResults.length > 0 ? searchResults : ''}
+            </div>
+            </div>
+            <div className='mt-40 w-[83.5%] mx-auto flex flex-col items-center'>
+                {mappedTracks}
             </div>
         </>
 

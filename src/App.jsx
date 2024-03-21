@@ -12,7 +12,7 @@ function App() {
         <Route index element={<Home/>} />
         <Route path="/home" element={<Home/>} />
         <Route path="/redirect" element={<LoggedIn/>} />
-        <Route path="/topSongsAndTracks" element={<TopSongsAndArtists/>} />
+        <Route path="/topSongsAndArtists" element={<TopSongsAndArtists/>} />
         <Route path="/songRecommendation" element={<SongRecommendation/>}/>
         <Route  path='*' element={<NoPage/>} />
       </Routes>

@@ -13,8 +13,8 @@ const SearchResultTile = (props) => {
 
 
     return (
-        <div className="bg-white py-3 block text-3xl w-full border-transparent hover:border-blue-500 hover:bg-blue-50 cursor-pointer">
-            <span onClick={() => props.handleTrackClick(props.track)}>{props.track.name} - {artistString}</span>
+        <div onClick={() => props.handleTrackClick(props.track)} className="bg-white py-3 block text-3xl w-full border-transparent hover:border-blue-500 hover:bg-blue-50 cursor-pointer">
+            <span>{props.track.name} - {artistString}</span>
         </div>
     )
 }

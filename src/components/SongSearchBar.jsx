@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import SearchResultTile from './SearchResultTile';
 import TrackCard from './TrackCard';
 
-const SongSearchBar = () => {
+const SongSearchBar = (props) => {
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [rawSearchResults, setRawSearchResults] = useState([]);
@@ -18,6 +18,7 @@ const SongSearchBar = () => {
         let tempTrackList = trackList;
         if(!tempTrackList.some((trackItem) => trackItem.id === track.id) && tempTrackList.length < 5) {
             tempTrackList.push(track)
+            props.sendTrackToParent(tempTrackList)
             setTrackList(tempTrackList)
             setSearchValue('')
             setSearchResults('')
@@ -29,20 +30,6 @@ const SongSearchBar = () => {
             }
         }
     }
-    
-    useEffect(() => {
-        clearTimeout(timeoutRef.current);
-
-        // Set new timeout
-        timeoutRef.current = setTimeout(() => {
-            if (searchValue.trim() !== '') {
-                fetchResults(searchValue);
-            } else {
-                setRawSearchResults([]);
-                setSearchResults([]);
-            }
-        }, 700);
-    },[searchValue])
 
     const fetchResults = async (value) => {
         try {
@@ -61,6 +48,19 @@ const SongSearchBar = () => {
             console.error('Error fetching data:', error);
         }
     };
+    
+    useEffect(() => {
+        clearTimeout(timeoutRef.current);
+
+        timeoutRef.current = setTimeout(() => {
+            if (searchValue.trim() !== '') {
+                fetchResults(searchValue);
+            } else {
+                setRawSearchResults([]);
+                setSearchResults([]);
+            }
+        }, 500);
+    },[searchValue])
 
     useEffect(() => {
         const formattedSearchResults = rawSearchResults.map((result) => {
@@ -86,7 +86,7 @@ const SongSearchBar = () => {
                 {searchResults.length > 0 ? searchResults : ''}
             </div>
             </div>
-            <div className='mt-40 w-[83.5%] mx-auto flex flex-col items-center'>
+            <div className='mt-20 w-[83.5%] mx-auto flex flex-col items-center'>
                 {mappedTracks}
             </div>
         </>

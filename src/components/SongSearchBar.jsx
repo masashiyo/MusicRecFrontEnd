@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import SearchResultTile from './SearchResultTile';
 import TrackCard from './TrackCard';
 
-const SongSearchBar = () => {
+const SongSearchBar = (props) => {
+    // const {parentTracks} = props
     const [searchValue, setSearchValue] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [rawSearchResults, setRawSearchResults] = useState([]);
@@ -70,18 +71,27 @@ const SongSearchBar = () => {
             setSearchResults(formattedSearchResults)
           }
     },[rawSearchResults])
+
+    useEffect(() => {
+        if(props.parentTracks.length > 0) {
+            const trackData = props.parentTracks.map((track) => {
+              return <TrackCard key={track.id} track={track} />
+            })
+            setMappedTracks(trackData)
+        }
+    },[props.parentTracks])
     
 
     return (
         <>
             <div className='text-left w-8/12 mx-auto'>
-                <input
+                {/* <input
                 className='rounded-lg text-5xl border border-[#ccc] w-full'
                 type="text"
                 placeholder="Search..."
                 value={searchValue}
                 onChange={handleChange}
-                />
+                /> */}
             <div className='absolute w-8/12'>
                 {searchResults.length > 0 ? searchResults : ''}
             </div>

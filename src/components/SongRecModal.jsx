@@ -17,16 +17,15 @@ export default function SongRecModal(props) {
             </button>
 
             {modal ?
-                <div className="w-[100%] h-[100%] top-0 left-0 right-0 bottom-0 fixed z-10">
-                <div className="w-[100%] h-[100%] top-0 left-0 right-0 bottom-0 fixed bg-gray-400 z-10 opacity-10"></div>
-                <div className=" bg-white z-50">
-                    <button className="close-modal" onClick={() => toggleModal}>Close</button>
-                    <h2>Modal Open</h2>
-                    <p className="text-2xl color-black">
-                        dahwahdwiahwudhuawdhuwaduhawduawduadwhadwhuadwuhdwauhwuadhhuiawdhuiadwhuiwadihuwaduihawhufeuihfsuifhsuif asigh fuiweag fweyug fyuasdg fhjdsg fhjsdf gashjdg iasd gashdg ashdg ashjdg ashjdg ashjdg ashjg wshjG HFawd
-                    </p>
-                </div>
-            </div> : ''}
+                <div className="w-[100%] h-[100%] top-0 left-0 right-0 bottom-0 fixed z-10 bg-gray-900 z-10 bg-opacity-50">
+                    <div className="bg-white z-50 mx-auto w-[50%] h-[50%] my-[10%]">
+                        <button className="close-modal" onClick={() => toggleModal()}>Close</button>
+                        <h2 className="text-5xl mb-5 text-center">Recommended Songs</h2>
+                        <p className="text-2xl color-black">
+                            dahwahdwiahwu dhua wdh uwa duha wdua wdua dwha dwhuadw uhdwa uhwua dhhuiawdhuiadwhuiwadihuwaduihawhufeuihfsuifhsuif asigh fuiweag fweyug fyuasdg fhjdsg fhjsdf gashjdg iasd gashdg ashdg ashjdg ashjdg ashjdg ashjg wshjG HFawd
+                        </p>
+                    </div>
+                </div> : ''}
         </>
     )
 }

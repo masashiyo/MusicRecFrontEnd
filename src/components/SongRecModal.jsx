@@ -6,7 +6,7 @@ export default function SongRecModal(props) {
 
     useEffect(() => {
         const trackData = props.trackList.map((track) => {
-            return <TrackCard key={track.id} track={track} />
+            return <TrackCard key={track.id} track={track} previewMusic={true}/>
           })
           setMappedTracks(trackData)
     },[props.trackList])

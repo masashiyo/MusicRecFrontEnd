@@ -11,7 +11,7 @@ const ArtistCard = (props) => {
   return (
     <div className="flex justify-center color-black border-2 border-[#ccc] rounded-lg mb-10 p-5 w-[80%]">
       <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank" className='w-24 h-24 mr-10'>
-        <img src={props.artist.images[0].url} alt={props.artist.name} className="w-24 h-24 rounded-full mr-20" />
+        <img src={props.artist.images[0].url} alt={props.artist.name} className="w-24 h-24 mr-20" />
       </a>
       <div className="grow">
         <h3 className="m-0 text-2xl">{props.artist.name}</h3>

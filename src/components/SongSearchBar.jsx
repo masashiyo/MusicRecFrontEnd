@@ -83,7 +83,7 @@ const SongSearchBar = (props) => {
                 onChange={handleChange}
                 />
             <div className='absolute w-8/12'>
-                {searchResults.length > 0 ? searchResults : ''}
+                {searchResults.length > 0 && searchResults}
             </div>
             </div>
             <div className='mt-20 w-[83.5%] mx-auto flex flex-col items-center'>

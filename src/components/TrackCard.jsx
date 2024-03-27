@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 const TrackCard = (props) => {
-  const { artist } = props;
   const artistNames = props.track.artists.map(artist => artist.name).join(', ');
 
   useEffect(() => {

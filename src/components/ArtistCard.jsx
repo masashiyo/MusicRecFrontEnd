@@ -1,8 +1,7 @@
 import React from 'react';
 
 const ArtistCard = (props) => {
-  const { artist } = props;
-  const formattedGenres = artist.genres.length > 0 ? formatGenres(artist.genres) : 'N/A';
+  const formattedGenres = props.artist.genres.length > 0 ? formatGenres(props.artist.genres) : 'N/A';
 
   function formatGenres(genres) {
     return genres.map(genre => genre.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')).join(', ');

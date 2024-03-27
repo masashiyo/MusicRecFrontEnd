@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 
 const SearchResultTile = (props) => {
-    const { track , handleTrackClick } = props
     const [artistString, setArtistString] = useState('');
 
     useEffect(() => {

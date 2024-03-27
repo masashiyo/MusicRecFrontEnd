@@ -12,6 +12,7 @@ const SongRecommendation = () => {
 
     const sendTrackToParent = (tracks) => {
         setTracksSelected(tracks);
+        mapTracksToCard(tracks)
     }
 
     const toggleModal = () => {
@@ -55,14 +56,14 @@ const SongRecommendation = () => {
         }
     };
 
-    useEffect(() => {
-        if(tracksSelected.length > 0) {
-            const trackData = tracksSelected.map((track) => {
+    const mapTracksToCard = (tracks) => {
+        if(tracks.length > 0) {
+            const trackData = tracks.map((track) => {
               return <TrackCard key={track.id} track={track} />
             })
             setMappedTracks(trackData)
         }
-    },[tracksSelected])
+    }
     
     return(
         <div className=''>
@@ -75,7 +76,7 @@ const SongRecommendation = () => {
                     {mappedTracks}
                 </div>
                 {tracksSelected.length > 0 && 
-                    <button onClick={() => clearSelectedTracks} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear Tracks</button>
+                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear Tracks</button>
                     // <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button>
                 }
             </div>

@@ -6,6 +6,7 @@ const SongRecommendation = () => {
     const [tracksSelected, setTracksSelected] = useState([]);
     const [modal, setModal] = useState(false);
     const [trackList, setTrackList] = useState([]);
+    const [fetching, setFetching] = useState(false)
 
     const sendTrackToParent = (tracks) => {
         setTracksSelected(tracks);
@@ -25,19 +26,23 @@ const SongRecommendation = () => {
             return;
         let trackPayload = createTrackPayload(tracksSelected)
         try {
+            setFetching(true)
+            setTrackList([])
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                  limit: 5,
+                  limit: 10,
                   tracks: trackPayload
                 })
               };
             const response = await fetch(`http://localhost:8080/auth/songRecs`,requestOptions);
             const data = await response.json();
-            
+            setFetching(false)
             setTrackList(data)
-            toggleModal()
+            if(!modal)
+                toggleModal()
+            
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -52,7 +57,7 @@ const SongRecommendation = () => {
             <div className='flex justify-center'>
                 {tracksSelected.length > 0 ? <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button> : ''}
             </div>
-            <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList}/>
+            <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchResults}/>
         </div>
         
     )

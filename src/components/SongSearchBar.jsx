@@ -15,19 +15,12 @@ const SongSearchBar = (props) => {
     };
 
     const handleTrackClick = (track) => {
-        let tempTrackList = trackList;
+        let tempTrackList = trackList ? trackList : [];
         if(!tempTrackList.some((trackItem) => trackItem.id === track.id) && tempTrackList.length < 5) {
             tempTrackList.push(track)
             props.sendTrackToParent(tempTrackList)
-            setTrackList(tempTrackList)
             setSearchValue('')
             setSearchResults('')
-            if(trackList.length > 0) {
-                const trackData = trackList.map((track) => {
-                  return <TrackCard key={track.id} track={track} />
-                })
-                setMappedTracks(trackData)
-            }
         }
     }
 
@@ -70,6 +63,10 @@ const SongSearchBar = (props) => {
             setSearchResults(formattedSearchResults)
           }
     },[rawSearchResults])
+
+    useEffect(() => {
+        setTrackList(props.selectedTracks)
+    },[props.selectedTracks])
     
 
     return (
@@ -85,9 +82,6 @@ const SongSearchBar = (props) => {
             <div className='absolute w-8/12'>
                 {searchResults.length > 0 && searchResults}
             </div>
-            </div>
-            <div className='mt-20 w-[83.5%] mx-auto flex flex-col items-center'>
-                {mappedTracks}
             </div>
         </>
 

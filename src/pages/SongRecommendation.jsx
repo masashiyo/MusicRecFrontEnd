@@ -75,11 +75,16 @@ const SongRecommendation = () => {
                 <div className='mt-20 w-[83.5%] mx-auto flex flex-col items-center'>
                     {mappedTracks}
                 </div>
+            </div>
+            <div className='flex justify-center'>
+                {tracksSelected.length > 0 &&
+                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear All</button>
+                }
                 {tracksSelected.length > 0 && 
-                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear Tracks</button>
-                    // <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button>
+                    <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button>
                 }
             </div>
+
             <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchResults}/>
         </div>
         

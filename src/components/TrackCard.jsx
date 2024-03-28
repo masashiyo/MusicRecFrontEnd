@@ -4,10 +4,31 @@ const TrackCard = (props) => {
   const artistNames = props.track.artists.map(artist => artist.name).join(', ');
 
   useEffect(() => {
-    let vid = document.getElementById(`audioPlayer${props.track.id}`)
-    if(vid)
-      vid.volume = 0.1;
-  })
+    const audio = document.getElementById(`audioPlayer${props.track.id}`);
+    if (audio) {
+      audio.volume = 0.1;
+      audio.onplay = () => pauseOtherTracks(props.track.id);
+      audio.onended = () => resetAudio();
+      audio.onpause = () => resetAudio();
+    }
+  }, [props.track.id]);
+
+  const pauseOtherTracks = (currentTrackId) => {
+    const audioElements = document.getElementsByTagName('audio');
+    for (let audio of audioElements) {
+      const id = audio.id.replace('audioPlayer', '');
+      if (id !== currentTrackId && !audio.paused) {
+        audio.pause();
+      }
+    }
+  };
+
+  const resetAudio = () => {
+    const audio = document.getElementById(`audioPlayer${props.track.id}`);
+    if (audio) {
+      audio.currentTime = 0;
+    }
+  };
 
   return (
     <div className="flex justify-center color-black border-2 border-[#ccc] rounded-lg mb-10 p-5 w-[80%]">

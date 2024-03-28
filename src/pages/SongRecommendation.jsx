@@ -29,6 +29,14 @@ const SongRecommendation = () => {
         setMappedTracks([])
     }
 
+    const removeTrackCard = (trackId) => {
+        let tempTracks = tracksSelected.filter(track => track.id !== trackId)
+        let tempTrackMap = {...mappedTracks}
+        delete tempTrackMap[trackId]
+        setTracksSelected(tempTracks);
+        mapTracksToCard(tempTracks)
+    }
+
     const fetchResults = async () => {
         if(tracksSelected.length < 1)
             return;
@@ -59,9 +67,13 @@ const SongRecommendation = () => {
     const mapTracksToCard = (tracks) => {
         if(tracks.length > 0) {
             const trackData = tracks.map((track) => {
-              return <TrackCard key={track.id} track={track} />
+              return <TrackCard key={track.id} track={track} removeButton={true} removeTrackCard={removeTrackCard}/>
             })
             setMappedTracks(trackData)
+            console.log(trackData)
+        } else {
+            console.log(0)
+            setMappedTracks([])
         }
     }
     
@@ -78,7 +90,7 @@ const SongRecommendation = () => {
             </div>
             <div className='flex justify-center'>
                 {tracksSelected.length > 0 &&
-                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear All</button>
+                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-red-500 hover:bg-red-800 p-2 text-xl rounded-lg border border-white">Clear All</button>
                 }
                 {tracksSelected.length > 0 && 
                     <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button>

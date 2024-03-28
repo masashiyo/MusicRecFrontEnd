@@ -45,6 +45,7 @@ const TrackCard = (props) => {
           <audio controls src={props.track.previewUrl} id={`audioPlayer${props.track.id}`}/>
         </div>
       }
+      {props.removeButton && <div onClick={() => props.removeTrackCard(props.track.id)}>❌</div>}
     </div>
   );
 };

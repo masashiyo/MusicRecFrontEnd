@@ -17,9 +17,14 @@ const SongSearchBar = (props) => {
         if(!tempTrackList.some((trackItem) => trackItem.id === track.id) && tempTrackList.length < 5) {
             tempTrackList.push(track)
             props.sendTrackToParent(tempTrackList)
-            setSearchValue('')
-            setSearchResults('')
+            clearSearchBar();
         }
+    }
+
+    const clearSearchBar = () => {
+        setSearchValue('')
+        setSearchResults([])
+        setRawSearchResults([])
     }
 
     const fetchResults = async (value) => {
@@ -55,7 +60,7 @@ const SongSearchBar = (props) => {
 
     useEffect(() => {
         const formattedSearchResults = rawSearchResults.map((result) => {
-            return <SearchResultTile handleTrackClick={handleTrackClick} track={result}/>
+            return <SearchResultTile key={result.id} handleTrackClick={handleTrackClick} track={result}/>
           })
           if(formattedSearchResults.length > 0) {
             setSearchResults(formattedSearchResults)

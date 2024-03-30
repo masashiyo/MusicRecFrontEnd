@@ -18,7 +18,10 @@ const TopTracksAndArtists = () => {
     setCurrentButtonClicked(buttonClickedSetter);
     const requestOptions = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'credentials': 'include', // Include cookies
+    },
       body: JSON.stringify({
         limit: number,
         offset: 0,

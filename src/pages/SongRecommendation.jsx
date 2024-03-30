@@ -38,7 +38,10 @@ const SongRecommendation = () => {
             setTrackList([])
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json' ,
+                    'credentials': 'include' //include the cookies
+                },
                 body: JSON.stringify({
                   limit: 10,
                   tracks: trackPayload

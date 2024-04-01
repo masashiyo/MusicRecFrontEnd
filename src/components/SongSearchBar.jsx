@@ -26,10 +26,9 @@ const SongSearchBar = (props) => {
         try {
             const requestOptions = {
                 method: 'POST',
+                credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'credentials': 'include', // Include cookies
-                    // 'Cookie': 'authToken=BQCuneIQ86uhbD4LYTSieRaUJmgEENP_EWVL0_EncwsJ944G4MxpzfWZWqf_z0D87CigfOdIAy0DVp8V0AfaiV9ucAcw3zgq3I4GT1SfCdsJO3cG-04rAXO5dfOCMPAEnW3OFt5uXtz0iV1j2T7GnpX0oUMhM03XV0ebN6XElCxZ0uKSuIMJmAhH6gsO212ZCrU'
                 },
                 body: JSON.stringify({
                   query: value,

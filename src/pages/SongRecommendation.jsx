@@ -41,15 +41,13 @@ const SongRecommendation = () => {
                 credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json' ,
-                    'credentials': 'include' //include the cookies
-                    // 'Cookie': 'authToken=BQAzd99c3c8NhxPiKMbb2505V8JvM9Gh-xc0ZinrHhW22a3v_6IVIMBxYcAUsz7N8KHGwA1G_KAhBGRHD68G5EfsR-GvOltep0z1M5W44wGsTeT1M8kByYIZxNYjVxWIIxUS9c5oXoJgpOSt5xhLzICzMlIhkTWaF8naXZJ9ARarldYzDb_BqlGPGnngKmLY0wA'
                 },
                 body: JSON.stringify({
                   limit: 10,
                   tracks: trackPayload
                 })
               };
-            const response = await fetch(`http://localhost:8080/auth/songRecs`,requestOptions);
+            const response = await fetch(`http://localhost:8080/api/songRecs`,requestOptions);
             const data = await response.json();
             setFetching(false)
             setTrackList(data)

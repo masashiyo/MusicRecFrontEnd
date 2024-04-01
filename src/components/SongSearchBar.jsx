@@ -34,7 +34,7 @@ const SongSearchBar = (props) => {
                   query: value,
                 })
               };
-            const response = await fetch(`http://localhost:8080/auth/songSearch`,requestOptions);
+            const response = await fetch(`http://localhost:8080/api/songSearch`,requestOptions);
             const data = await response.json();
 
             setRawSearchResults(data);

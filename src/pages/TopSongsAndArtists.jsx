@@ -29,7 +29,7 @@ const TopTracksAndArtists = () => {
       })
     };
   
-    fetch(`http://localhost:8080/auth/${endpoint}`, requestOptions)
+    fetch(`http://localhost:8080/api/${endpoint}`, requestOptions)
       .then((response) => response.json())
       .then(data => {
         setterFunction(data);

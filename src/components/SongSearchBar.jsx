@@ -24,20 +24,9 @@ const SongSearchBar = (props) => {
 
     const fetchResults = async (value) => {
         try {
-            const requestOptions = {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  query: value,
-                })
-              };
-            const response = await fetch(`http://localhost:8080/api/songSearch`,requestOptions);
-            const data = await response.json();
-
-            setRawSearchResults(data);
+            const url = `http://localhost:8080/api/songSearch?query=${value}`;
+            const response = await fetch(url, { credentials: 'include' });
+            setRawSearchResults(await response.json());
         } catch (error) {
             console.error('Error fetching data:', error);
         }

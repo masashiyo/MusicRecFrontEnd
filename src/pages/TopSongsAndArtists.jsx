@@ -16,20 +16,8 @@ const TopTracksAndArtists = () => {
   const fetchData = (endpoint, setterFunction, buttonClickedSetter, selectedTerm, number) => {
     setFetching(true);
     setCurrentButtonClicked(buttonClickedSetter);
-    const requestOptions = {
-      method: 'POST',
-      credentials: 'include',
-      headers: { 
-        'Content-Type': 'application/json',
-    },
-      body: JSON.stringify({
-        limit: number,
-        offset: 0,
-        timeRange: selectedTerm
-      })
-    };
   
-    fetch(`http://localhost:8080/api/${endpoint}`, requestOptions)
+    fetch(`http://localhost:8080/api/${endpoint}?timeRange=${selectedTerm}&limit=${number}&offset=0`, { credentials: 'include' })
       .then((response) => response.json())
       .then(data => {
         setterFunction(data);

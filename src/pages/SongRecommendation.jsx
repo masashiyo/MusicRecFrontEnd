@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SongSearchBar from '../components/SongSearchBar';
 import SongRecModal from '../components/SongRecModal';
 import TrackCard from '../components/TrackCard';
+import NavigationBar from '../components/NavigationBar';
 
 const SongRecommendation = () => {
     const [tracksSelected, setTracksSelected] = useState([]);
@@ -70,6 +71,7 @@ const SongRecommendation = () => {
     
     return(
         <div className=''>
+            <NavigationBar />
             <div className='bg-green-500 text-white py-6 mb-10 flex flex-col items-center'>
                 <h1 className='text-5xl mb-20 mt-6'>Song Recommendations</h1>
             </div>

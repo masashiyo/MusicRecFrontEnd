@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ArtistCard from '../components/ArtistCard.jsx';
 import TrackCard from '../components/TrackCard.jsx';
+import NavigationBar from '../components/NavigationBar.jsx';
 
 const TopTracksAndArtists = () => {
   const [userTopArtists, setUserTopArtists] = useState([]);
@@ -84,6 +85,7 @@ const TopTracksAndArtists = () => {
 
   return (
     <div>
+    <NavigationBar/>
     <header className="bg-green-500 text-white py-6 flex flex-col items-center">
       <h1 className="text-5xl mb-20 mt-6">Most Listened to Artists and Tracks</h1>
       <div className="trackAndArtistNumber flex justify-center mb-4">
@@ -113,7 +115,7 @@ const TopTracksAndArtists = () => {
     </header>
     <div className="justify-center">
       <h1 className="text-6xl m-10 text-center">{!fetching ? currentButtonClicked : ""}</h1>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center ">
         {fetching ? <h1 className='text-6xl'>Loading...</h1> : (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)}
       </div>
     </div>

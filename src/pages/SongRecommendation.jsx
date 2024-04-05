@@ -69,31 +69,37 @@ const SongRecommendation = () => {
         }
     }
     
-    return(
-        <div className=''>
+    return (
+        <div className="flex flex-col min-h-screen">
+          <div className="flex-grow">
             <NavigationBar />
-            <div className='bg-green-500 text-white py-6 mb-10 flex flex-col items-center'>
-                <h1 className='text-5xl mb-20 mt-6'>Song Recommendations</h1>
+            <div className="bg-green-500 text-white py-12 mb-10 flex flex-col items-center">
+              <h1 className="text-5xl mb-20 mt-6 font-semibold">Song Recommendations</h1>
             </div>
             <SongSearchBar sendTrackToParent={sendTrackToParent} tracksSelected={tracksSelected}/>
-            <div className='flex justify-center'>
-                <div className='mt-20 w-[83.5%] mx-auto flex flex-col items-center'>
-                    {mappedTracks}
-                </div>
+            <div className="flex justify-center">
+              <div className="mt-20 w-[83.5%] mx-auto flex flex-col items-center">
+                {mappedTracks}
+              </div>
             </div>
-            <div className='flex justify-center'>
-                {tracksSelected.length > 0 &&
-                    <button onClick={() => clearSelectedTracks()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Clear All</button>
-                }
-                {tracksSelected.length > 0 && 
-                    <button onClick={() => fetchResults()} className="mb-20 transition duration-300 ease-in-out text-white bg-green-500 hover:bg-green-700 p-2 text-xl rounded-lg border border-white">Get Tracks</button>
-                }
+            <div className="flex justify-center my-12">
+              {tracksSelected.length > 0 &&
+                <button onClick={() => clearSelectedTracks()} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 transform hover:scale-105">Clear All</button>
+              }
+              {tracksSelected.length > 0 && 
+                <button onClick={() => fetchResults()} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 transform hover:scale-105">Get Tracks</button>
+              }
             </div>
-
-            <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchResults}/>
+          </div>
+      
+          <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchResults}/>
+          
+          <footer className="bg-green-500 text-white py-6 text-center">
+            <p className="text-lg">Enjoy Your Music Journey! 🎧</p>
+          </footer>
         </div>
-        
-    )
+      )
+      
 }
 
 export default SongRecommendation

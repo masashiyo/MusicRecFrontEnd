@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import SearchResultTile from './SearchResultTile';
-import TrackCard from './TrackCard';
 
 const SongSearchBar = (props) => {
     const [searchValue, setSearchValue] = useState('');
@@ -57,21 +56,29 @@ const SongSearchBar = (props) => {
 
     return (
         <>
-            <div className='text-left w-8/12 mx-auto'>
-                <input
-                className='rounded-lg text-5xl border border-[#ccc] w-full'
-                type="text"
-                placeholder="Search..."
-                value={searchValue}
-                onChange={handleChange}
-                />
-            <div className='absolute w-8/12'>
-                {searchResults.length > 0 && searchResults}
+          <div className='text-left w-8/12 mx-auto relative'>
+            <input
+              className='rounded-lg text-5xl border border-[#ccc] w-full py-3 px-4 focus:border-green-500'
+              type="text"
+              placeholder="Search..."
+              value={searchValue}
+              onChange={handleChange}
+            />
+            <div className='absolute bg-white rounded-lg mt-2 w-full max-h-60 overflow-y-auto z-10'>
+              {searchResults.length > 0 &&
+                <ul className="overflow-x-hidden">
+                  {searchResults.map((result, index) => (
+                    <li key={index}>
+                      <p className="text-lg">{result}</p>
+                    </li>
+                  ))}
+                </ul>
+              }
             </div>
-            </div>
+          </div>
         </>
-
-    );
+      );
+      
 }
 
 export default SongSearchBar

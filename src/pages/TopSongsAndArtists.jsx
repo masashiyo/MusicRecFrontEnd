@@ -81,19 +81,17 @@ const TopTracksAndArtists = () => {
     return false
   }
 
-//TODO I will need to condense the code to make it more efficient but for now this will do
-
-  return (
-    <div>
+return (
+  <div className="flex flex-col min-h-screen">
     <NavigationBar/>
-    <header className="bg-green-500 text-white py-6 flex flex-col items-center">
-      <h1 className="text-5xl mb-20 mt-6">Most Listened to Artists and Tracks</h1>
-      <div className="trackAndArtistNumber flex justify-center mb-4">
-        <label className="mr-6">
+    <header className="bg-green-500 text-white py-8 flex flex-col items-center font-semibold font-sans pt-12">
+      <h1 className="text-6xl mb-12 mt-8">Most Listened to Artists and Tracks</h1>
+      <div className="trackAndArtistNumber flex justify-center mb-8">
+        <label className="mr-8">
           Short Term&nbsp;&nbsp;
           <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange} />
         </label>
-        <label className="mr-6">
+        <label className="mr-8">
           Medium Term&nbsp;&nbsp;
           <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange} />
         </label>
@@ -102,25 +100,34 @@ const TopTracksAndArtists = () => {
           <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange} />
         </label>
       </div>
-      <div className=''>
+      <div className='mb-8'>
         <label className="block mb-4 text-center">
           Number of Artists/Tracks
-          <input type="text" id="number" onChange={handleNumberChange} value={number} className="block mt-2 w-full text-black" />
+          <input type="text" id="number" onChange={handleNumberChange} value={number} className="block mt-2 w-full text-black text-center bg-white rounded-full py-2 px-4" />
         </label>
       </div>
       <div className="flex">
-        <button className="button mr-4 transition duration-300 ease-in-out hover:bg-green-700 p-3 rounded-lg border border-white" onClick={getTopArtists}>Get Artists</button>
-        <button className="button transition duration-300 ease-in-out hover:bg-green-700 p-3 rounded-lg border border-white" onClick={getTopTracks}>Get Tracks</button>
+        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 border transform hover:scale-105" onClick={getTopArtists}>Get Artists</button>
+        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 border transform hover:scale-105" onClick={getTopTracks}>Get Tracks</button>
       </div>
     </header>
-    <div className="justify-center">
-      <h1 className="text-6xl m-10 text-center">{!fetching ? currentButtonClicked : ""}</h1>
+    <div className="justify-center flex-grow">
+      <h1 className="text-6xl m-10 text-center font-semibold">{!fetching ? currentButtonClicked : ""}</h1>
       <div className="flex flex-col items-center ">
-        {fetching ? <h1 className='text-6xl'>Loading...</h1> : (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)}
+        {fetching ? 
+          <div className="animate-pulse">
+            <h1 className='text-6xl'>Loading...</h1>
+          </div> : 
+          (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
+        }
       </div>
     </div>
+    <footer className="bg-green-500 text-white py-6 text-center">
+      <p className="text-lg">Enjoy Your Music Journey! 🎧</p>
+    </footer>
   </div>
-  )
+)
+
 }
 
 

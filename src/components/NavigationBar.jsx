@@ -4,17 +4,17 @@ export default function NavigationBar() {
 
 
     return (
-        <div className="bg-white">
-            <div>
-                <Link to="/home">Home</Link>
+        <nav className="fixed font-semibold text-xl flex bg-[#121212] p-4 w-[100%] z-50">
+            <div className="text-sm">
+                <Link className="block mt-4 lg:mt-0 text-white hover:text-green-100 mr-4" to="/home">Home</Link>
             </div>
-            <div>
-                <Link to="/songRecommendation">Song Recommendations</Link>
+            <div className="text-sm">
+                <Link className="block mt-4 lg:mt-0 text-white hover:text-green-100 mr-4" to="/songRecommendation">Song Recommendations</Link>
             </div>
-            <div>
-                <Link to="/topSongsAndArtists">Top Tracks and Artists</Link>
+            <div className="text-sm">
+                <Link className="block mt-4 lg:mt-0 text-white hover:text-green-100 mr-4" to="/topSongsAndArtists">Top Tracks and Artists</Link>
             </div>
-        </div>
+        </nav>
     )
 
 }

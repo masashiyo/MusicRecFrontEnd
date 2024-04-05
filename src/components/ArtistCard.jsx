@@ -7,15 +7,16 @@ const ArtistCard = (props) => {
     return genres.map(genre => genre.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')).join(', ');
   }
 
+
   return (
-    <div className="flex justify-center color-black border-2 border-[#ccc] rounded-lg mb-10 p-5 w-[80%]">
-      <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank" className='w-24 h-24 mr-10'>
-        <img src={props.artist.images[0].url} alt={props.artist.name} className="w-24 h-24 mr-20" />
+    <div className="flex items-center justify-center bg-white rounded-lg shadow-lg p-6 border border-gray-200 hover:shadow-xl transition duration-300 w-full mb-2">
+      <a href={props.artist.externalUrls.externalUrls.spotify} target="_blank" rel="noopener noreferrer" className="w-24 h-24 mr-6 flex-shrink-0">
+        <img src={props.artist.images[0].url} alt={props.artist.name} className="w-full h-full" />
       </a>
-      <div className="grow">
-        <h3 className="m-0 text-2xl">{props.artist.name}</h3>
-        <p className="mt-5 text-lg" >Genre: {formattedGenres}</p>
-        <p className="text-lg">Popularity: {props.artist.popularity}</p>
+      <div className="flex flex-col flex-grow">
+        <h3 className="text-xl font-semibold mb-2">{props.artist.name}</h3>
+        <p className="text-gray-600 text-base mb-1">Genre: {formattedGenres}</p>
+        <p className="text-gray-600 text-base">Popularity: {props.artist.popularity}</p>
       </div>
     </div>
   );

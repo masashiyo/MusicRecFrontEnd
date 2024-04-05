@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ArtistCard from '../components/ArtistCard.jsx';
 import TrackCard from '../components/TrackCard.jsx';
 import NavigationBar from '../components/NavigationBar.jsx';
+import Footer from '../components/Footer.jsx';
 
 const TopTracksAndArtists = () => {
   const [userTopArtists, setUserTopArtists] = useState([]);
@@ -113,18 +114,16 @@ return (
     </header>
     <div className="justify-center flex-grow">
       <h1 className="text-6xl m-10 text-center font-semibold">{!fetching ? currentButtonClicked : ""}</h1>
-      <div className="flex flex-col items-center ">
+      <div className="flex flex-col items-center mx-auto w-[50%]">
         {fetching ? 
-          <div className="animate-pulse">
+          <div className="">
             <h1 className='text-6xl'>Loading...</h1>
           </div> : 
           (currentButtonClicked === "Artists" ? mappedArtists : mappedTracks)
         }
       </div>
     </div>
-    <footer className="bg-green-500 text-white py-6 text-center">
-      <p className="text-lg">Enjoy Your Music Journey! 🎧</p>
-    </footer>
+    <Footer/>
   </div>
 )
 

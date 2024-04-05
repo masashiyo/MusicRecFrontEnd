@@ -31,14 +31,14 @@ const TrackCard = (props) => {
   };
 
   return (
-    <div className="flex justify-center color-black border-2 border-[#ccc] rounded-lg mb-10 p-5 w-[80%]">
-      <a href={props.track.externalUrls.externalUrls.spotify} target="_blank" className='w-24 h-24 mr-10'>
-        <img src={props.track.album.images[0].url} alt={props.track.name} className="w-24 h-24 mr-20" />
+    <div className="flex items-center justify-center bg-white rounded-lg shadow-lg p-6 border border-gray-200 hover:shadow-xl transition duration-300 w-full mb-2">
+      <a href={props.track.externalUrls.externalUrls.spotify} target="_blank" className='w-24 h-24 mr-6 flex-shrink-0'>
+        <img src={props.track.album.images[0].url} alt={props.track.name} className="w-full h-full" />
       </a>
-      <div className="grow">
-        <h3 className="m-0 text-2xl">{props.track.name}</h3>
-        <p className="mt-5 text-lg" >Artist: {artistNames}</p>
-        <p className="text-lg">Album: {props.track.album.name}</p>
+      <div className="flex flex-col flex-grow">
+        <h3 className="text-xl font-semibold mb-2">{props.track.name}</h3>
+        <p className="text-gray-600 text-base mb-1" >Artist: {artistNames}</p>
+        <p className="text-gray-600 text-base">Album: {props.track.album.name}</p>
       </div>
       {props.previewMusic && props.track.previewUrl &&
         <div>

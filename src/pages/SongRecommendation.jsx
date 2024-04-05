@@ -3,6 +3,7 @@ import SongSearchBar from '../components/SongSearchBar';
 import SongRecModal from '../components/SongRecModal';
 import TrackCard from '../components/TrackCard';
 import NavigationBar from '../components/NavigationBar';
+import Footer from '../components/Footer';
 
 const SongRecommendation = () => {
     const [tracksSelected, setTracksSelected] = useState([]);
@@ -74,11 +75,11 @@ const SongRecommendation = () => {
           <div className="flex-grow">
             <NavigationBar />
             <div className="bg-green-500 text-white py-12 mb-10 flex flex-col items-center">
-              <h1 className="text-5xl mb-20 mt-6 font-semibold">Song Recommendations</h1>
+              <h1 className="text-6xl mb-20 mt-6 font-semibold">Song Recommendations</h1>
             </div>
             <SongSearchBar sendTrackToParent={sendTrackToParent} tracksSelected={tracksSelected}/>
             <div className="flex justify-center">
-              <div className="mt-20 w-[83.5%] mx-auto flex flex-col items-center">
+              <div className="mt-20 w-[50%] mx-auto flex flex-col items-center">
                 {mappedTracks}
               </div>
             </div>
@@ -93,10 +94,7 @@ const SongRecommendation = () => {
           </div>
       
           <SongRecModal modal={modal} toggleModal={toggleModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchResults}/>
-          
-          <footer className="bg-green-500 text-white py-6 text-center">
-            <p className="text-lg">Enjoy Your Music Journey! 🎧</p>
-          </footer>
+          <Footer/>
         </div>
       )
       

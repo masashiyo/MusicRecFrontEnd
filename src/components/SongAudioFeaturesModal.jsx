@@ -2,6 +2,26 @@ import React, { useState, useEffect } from "react";
 import TrackCard from "./TrackCard";
 
 export default function SongAudioFeaturesModal(props) {
+  const [buttonName, setButtonName] = useState("Skip Song Features and Get Tracks");
+  const [selectedSongFeatures, setSelectedSongFeatures] = useState([]);
+  const [mappedFeatures, setMappedFeatures] = useState([])
+
+  useEffect(() => {
+    if(selectedSongFeatures.length === 0)
+      setButtonName("Skip Song Features and Get Tracks")
+    else 
+      setButtonName("Get Tracks using Song Features")
+      mapFeaturesToCard(props.songFeatures)
+  },[props.songFeatures])
+
+  const mapFeaturesToCard = (features) => {
+    if(props.songFeatures.length > 0) {
+      const featureData = features.map((feature) => {
+        return <div className='text-2xl text-green-500 text-center'>{feature.categoryDisplayName}</div>
+      })
+      setMappedFeatures(featureData)
+    }
+  }
 
     return (
         <>
@@ -12,11 +32,11 @@ export default function SongAudioFeaturesModal(props) {
                 <h2 className="text-5xl mb-12 mt-8 text-center text-green-500 font-semibold">Common Song Features</h2>
                 <p className="text-xl text-center text-green-500">These are the common song features found. You can select up to two different common features to modify your recommendations.</p>
                 <div className="flex flex-col items-center w-[70%] mx-auto">
-                  {/* {mappedTracks.length > 0 && mappedTracks} */}
+                  {mappedFeatures.length > 0 && mappedFeatures}
                 </div>
                 <p className="text-3xl text-center mt-8 mb-4 text-gray-700">{props.fetchingTracks && "Loading..."}</p>
                 {!props.fetchingTracks &&
-                  <button className="flex mx-auto bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 transform hover:scale-105 mb-10" onClick={() => props.fetchMoreTracks()}> Get More Recommendations</button>
+                  <button className="flex mx-auto bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 transform hover:scale-105 mb-10" onClick={() => props.fetchSongRecs()}> {buttonName}</button>
                 }
               </div>
             </div>

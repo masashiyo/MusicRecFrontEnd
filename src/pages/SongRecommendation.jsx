@@ -11,7 +11,34 @@ const SongRecommendation = () => {
     const [mappedTracks, setMappedTracks] = useState([])
     const [songRecModal, setSongRecModal] = useState(false);
     const [songAudioFeaturesModal, setSongAudioFeaturesModal] = useState(false);
-    const [songFeatures, setSongFeatures] = useState()
+    const [songFeatures, setSongFeatures] = useState([])
+    const [songFeaturesSelected, setSongFeaturesSelected] = useState([
+      {
+          "average": 1,
+          "category": "acousticness",
+          "categoryDisplayName": "High Acoustic Mix"
+      },
+      {
+          "average": 1,
+          "category": "danceability",
+          "categoryDisplayName": "High Dancebility"
+      },
+      {
+          "average": 1,
+          "category": "valence",
+          "categoryDisplayName": "Happy and Sad Mix"
+      },
+      {
+          "average": 1,
+          "category": "energy",
+          "categoryDisplayName": "High Energy"
+      },
+      {
+          "average": 1,
+          "category": "instrumentalness",
+          "categoryDisplayName": "High Vocal Mix"
+      }
+  ]);
     const [trackList, setTrackList] = useState([]);
     const [fetching, setFetching] = useState(false)
 
@@ -20,10 +47,13 @@ const SongRecommendation = () => {
         mapTracksToCard(tracks)
     }
 
+    const sendFeatureToParent = (features) => {
+      setSongFeatures(features)
+      mapFeaturesToCard(features)
+    }
+
     const toggleSongRecModal = () => {
         setSongRecModal(!songRecModal)
-        setTracksSelected([])
-        setMappedTracks([])
     }
 
     const toggleSongAudioFeaturesModal = () => {
@@ -54,13 +84,15 @@ const SongRecommendation = () => {
                     'Content-Type': 'application/json' ,
                 },
                 body: JSON.stringify({
+                  tracks: trackPayload,
                   limit: 10,
-                  tracks: trackPayload
+                  audioFeaturesList: songFeaturesSelected,
                 })
               };
             const response = await fetch(`http://localhost:8080/api/songRecs`,requestOptions);
             const data = await response.json();
             setFetching(false)
+            setSongAudioFeaturesModal(false)
             setTrackList(data)
             setSongRecModal(true)
             
@@ -71,20 +103,18 @@ const SongRecommendation = () => {
 
     const fetchCommonSongFeatures = async () => {
       if(tracksSelected.length < 1)
-      return;
-  let trackPayload = createTrackStringPayload(tracksSelected)
-  try {
-      setFetching(true)
-      const response = await fetch(`http://localhost:8080/api/songCommonAudioFeatures?tracks=${trackPayload}`, { credentials: 'include' });
-      const data = await response.json();
-      setSongAudioFeaturesModal(true)
-      setFetching(false)
-      setSongFeatures(data)
-      
-  } catch (error) {
-      console.error('Error fetching data:', error);
-  }
-
+        return;
+      let trackPayload = createTrackStringPayload(tracksSelected)
+      try {
+          setFetching(true)
+          const response = await fetch(`http://localhost:8080/api/songCommonAudioFeatures?tracks=${trackPayload}`, { credentials: 'include' });
+          const data = await response.json();
+          setSongAudioFeaturesModal(true)
+          setFetching(false)
+          setSongFeatures(data)
+      } catch (error) {
+          console.error('Error fetching data:', error);
+      }
     }
 
     const mapTracksToCard = (tracks) => {
@@ -118,7 +148,7 @@ const SongRecommendation = () => {
               }
             </div>
           </div>
-          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} songFeatures={songFeatures}/>
+          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} songFeatures={songFeatures} trackList={trackList} fetchSongRecs={fetchSongRecs}/>
           <SongRecModal modal={songRecModal} toggleModal={toggleSongRecModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchSongRecs}/>
           <Footer/>
         </div>

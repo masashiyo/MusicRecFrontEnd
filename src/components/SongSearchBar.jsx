@@ -44,13 +44,19 @@ const SongSearchBar = (props) => {
         }, 500);
     },[searchValue])
 
+    const filterDuplicateTracks = (searchResults, tracksSelected) => {
+      const searchResultsIds = tracksSelected.map(item => item.id);
+      return searchResults.filter(item => !searchResultsIds.includes(item.id));
+    }
+
     useEffect(() => {
-        const formattedSearchResults = rawSearchResults.map((result) => {
-            return <SearchResultTile handleTrackClick={handleTrackClick} track={result}/>
-          })
-          if(formattedSearchResults.length > 0) {
-            setSearchResults(formattedSearchResults)
-          }
+      let filteredSearchResults = filterDuplicateTracks(rawSearchResults, props.tracksSelected)
+        const formattedSearchResults = filteredSearchResults.slice(0,10).map((result, index) => {
+          return <SearchResultTile handleTrackClick={handleTrackClick} track={result} key={index}/>
+        })
+        if(formattedSearchResults.length > 0) {
+          setSearchResults(formattedSearchResults)
+        }
     },[rawSearchResults])
     
 

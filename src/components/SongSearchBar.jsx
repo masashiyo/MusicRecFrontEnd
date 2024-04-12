@@ -75,7 +75,7 @@ const SongSearchBar = (props) => {
                 <ul className="overflow-x-hidden">
                   {searchResults.map((result, index) => (
                     <li key={index}>
-                      <p className="text-lg">{result}</p>
+                      <div className="text-lg">{result}</div>
                     </li>
                   ))}
                 </ul>

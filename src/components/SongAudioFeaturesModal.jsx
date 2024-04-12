@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TrackCard from "./TrackCard";
+import SongFeature from "./SongFeature";
 
 export default function SongAudioFeaturesModal(props) {
   const [buttonName, setButtonName] = useState("Skip Song Features and Get Tracks");
@@ -16,8 +16,8 @@ export default function SongAudioFeaturesModal(props) {
 
   const mapFeaturesToCard = (features) => {
     if(props.songFeatures.length > 0) {
-      const featureData = features.map((feature) => {
-        return <div className='text-2xl text-green-500 text-center'>{feature.categoryDisplayName}</div>
+      const featureData = features.map((feature, index) => {
+        return <SongFeature feature={feature} key={index} sendFeatureToParent={props.sendFeatureToParent}/>
       })
       setMappedFeatures(featureData)
     }

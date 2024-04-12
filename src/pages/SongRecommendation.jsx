@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SongSearchBar from '../components/SongSearchBar';
 import SongRecModal from '../components/SongRecModal';
 import TrackCard from '../components/TrackCard';
@@ -12,33 +12,7 @@ const SongRecommendation = () => {
     const [songRecModal, setSongRecModal] = useState(false);
     const [songAudioFeaturesModal, setSongAudioFeaturesModal] = useState(false);
     const [songFeatures, setSongFeatures] = useState([])
-    const [songFeaturesSelected, setSongFeaturesSelected] = useState([
-      {
-          "average": 1,
-          "category": "acousticness",
-          "categoryDisplayName": "High Acoustic Mix"
-      },
-      {
-          "average": 1,
-          "category": "danceability",
-          "categoryDisplayName": "High Dancebility"
-      },
-      {
-          "average": 1,
-          "category": "valence",
-          "categoryDisplayName": "Happy and Sad Mix"
-      },
-      {
-          "average": 1,
-          "category": "energy",
-          "categoryDisplayName": "High Energy"
-      },
-      {
-          "average": 1,
-          "category": "instrumentalness",
-          "categoryDisplayName": "High Vocal Mix"
-      }
-  ]);
+    const [songFeaturesSelected, setSongFeaturesSelected] = useState([]);
     const [trackList, setTrackList] = useState([]);
     const [fetching, setFetching] = useState(false)
 
@@ -47,16 +21,35 @@ const SongRecommendation = () => {
         mapTracksToCard(tracks)
     }
 
-    const sendFeatureToParent = (features) => {
-      setSongFeatures(features)
-      mapFeaturesToCard(features)
+    const sendFeatureToParent = (feature) => {
+      setSongFeaturesSelected(prevFeatures => {
+        const tempSongFeatures = [...prevFeatures]; // Create a copy of the previous state array
+    
+        // Check if the feature is already selected
+        const existingIndex = tempSongFeatures.findIndex(item => item.category === feature.category);
+      
+        // If the feature is already selected, remove it
+        if(existingIndex !== -1) {
+          tempSongFeatures.splice(existingIndex, 1);
+        } else {
+          // If the feature is not selected, add it
+          tempSongFeatures.push(feature);
+        }
+      
+        return tempSongFeatures;
+      });
     }
+    
 
     const toggleSongRecModal = () => {
-        setSongRecModal(!songRecModal)
+      setSongFeaturesSelected([])
+      setSongFeatures([])
+      setSongRecModal(!songRecModal)
     }
 
     const toggleSongAudioFeaturesModal = () => {
+      setSongFeaturesSelected([])
+      setSongFeatures([])
       setSongAudioFeaturesModal(!songAudioFeaturesModal)
     }
 
@@ -148,7 +141,7 @@ const SongRecommendation = () => {
               }
             </div>
           </div>
-          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} songFeatures={songFeatures} trackList={trackList} fetchSongRecs={fetchSongRecs}/>
+          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} sendFeatureToParent={sendFeatureToParent} songFeatures={songFeatures} trackList={trackList} fetchSongRecs={fetchSongRecs}/>
           <SongRecModal modal={songRecModal} toggleModal={toggleSongRecModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchSongRecs}/>
           <Footer/>
         </div>

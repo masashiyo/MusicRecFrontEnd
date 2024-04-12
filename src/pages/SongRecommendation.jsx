@@ -78,7 +78,7 @@ const SongRecommendation = () => {
                 },
                 body: JSON.stringify({
                   tracks: trackPayload,
-                  limit: 10,
+                  limit: 50,
                   audioFeaturesList: songFeaturesSelected,
                 })
               };

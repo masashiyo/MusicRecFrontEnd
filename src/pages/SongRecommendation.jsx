@@ -141,12 +141,11 @@ const SongRecommendation = () => {
               }
             </div>
           </div>
-          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} sendFeatureToParent={sendFeatureToParent} songFeatures={songFeatures} trackList={trackList} fetchSongRecs={fetchSongRecs}/>
+          <SongAudioFeaturesModal modal={songAudioFeaturesModal} toggleModal={toggleSongAudioFeaturesModal} fetching={fetching} sendFeatureToParent={sendFeatureToParent} songFeaturesSelected={songFeaturesSelected} songFeatures={songFeatures} trackList={trackList} fetchSongRecs={fetchSongRecs}/>
           <SongRecModal modal={songRecModal} toggleModal={toggleSongRecModal} trackList={trackList} fetchingTracks={fetching} fetchMoreTracks={fetchSongRecs}/>
           <Footer/>
         </div>
       )
-      
 }
 
 export default SongRecommendation

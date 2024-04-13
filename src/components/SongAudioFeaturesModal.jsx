@@ -22,6 +22,8 @@ export default function SongAudioFeaturesModal(props) {
         return <SongFeature feature={feature} key={index} sendFeatureToParent={props.sendFeatureToParent}/>
       })
       setMappedFeatures(featureData)
+    } else {
+       setMappedFeatures([])
     }
   }
 
@@ -33,6 +35,8 @@ export default function SongAudioFeaturesModal(props) {
                 <button className="absolute top-2 right-2 bg-green-500 hover:bg-red-500 text-white font-semibold py-2 px-6 rounded-full shadow-md transition duration-200" onClick={() => props.toggleModal()}>Close</button>
                 <h2 className="text-5xl mb-12 mt-8 text-center text-green-500 font-semibold">Common Song Features</h2>
                 <p className="text-xl text-center text-green-500">These are the common song features found. You can select up to two different common features to modify your recommendations.</p>
+                {props.songFeatures.length === 0 && 
+                <div className="text-3xl text-black mx-auto text-center m-5 p-5">No Song Features Available</div>}
                 <div className="flex flex-col items-center w-[70%] mx-auto">
                   {mappedFeatures.length > 0 && mappedFeatures}
                 </div>

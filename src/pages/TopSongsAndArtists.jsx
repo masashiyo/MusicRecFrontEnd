@@ -108,8 +108,8 @@ return (
         </label>
       </div>
       <div className="flex">
-        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 border transform hover:scale-105" onClick={getTopArtists}>Get Artists</button>
-        <button className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 border transform hover:scale-105" onClick={getTopTracks}>Get Tracks</button>
+        <button className="bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 border transform hover:scale-105" onClick={getTopArtists}>Get Artists</button>
+        <button className="bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 border transform hover:scale-105" onClick={getTopTracks}>Get Tracks</button>
       </div>
     </header>
     <div className="justify-center flex-grow">

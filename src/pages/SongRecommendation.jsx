@@ -134,10 +134,10 @@ const SongRecommendation = () => {
             </div>
             <div className="flex justify-center my-12">
               {tracksSelected.length > 0 &&
-                <button onClick={() => clearSelectedTracks()} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 transform hover:scale-105">Clear All</button>
+                <button onClick={() => clearSelectedTracks()} className="bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 transform hover:scale-105">Clear All</button>
               }
               {tracksSelected.length > 0 && 
-                <button onClick={() => fetchCommonSongFeatures()} className="bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 transform hover:scale-105">Get Tracks</button>
+                <button onClick={() => fetchCommonSongFeatures()} className="bg-green-500 hover:bg-green-400 text-white font-semibold py-3 px-8 rounded-full shadow-md transition duration-300 ml-5 transform hover:scale-105">Get Tracks</button>
               }
             </div>
           </div>

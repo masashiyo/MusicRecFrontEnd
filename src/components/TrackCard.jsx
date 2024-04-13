@@ -9,7 +9,6 @@ const TrackCard = (props) => {
       audio.volume = 0.1;
       audio.onplay = () => pauseOtherTracks(props.track.id);
       audio.onended = () => resetAudio();
-      audio.onpause = () => resetAudio();
     }
   }, [props.track.id]);
 

@@ -44,6 +44,7 @@ const TrackCard = (props) => {
           <audio controls src={props.track.previewUrl} id={`audioPlayer${props.track.id}`}/>
         </div>
       }
+      {props.displayClose && <div className='ml-2 text-red-300 hover:bg-red-300 rounded cursor-pointer'> ✖ </div>}
     </div>
   );
 };

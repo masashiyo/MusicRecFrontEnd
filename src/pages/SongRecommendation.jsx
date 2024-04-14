@@ -113,7 +113,7 @@ const SongRecommendation = () => {
     const mapTracksToCard = (tracks) => {
         if(tracks.length > 0) {
             const trackData = tracks.map((track) => {
-              return <TrackCard key={track.id} track={track} previewMusic={true}/>
+              return <TrackCard key={track.id} track={track} previewMusic={true} displayClose={true}/>
             })
             setMappedTracks(trackData)
         }

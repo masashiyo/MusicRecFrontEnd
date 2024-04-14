@@ -10,7 +10,7 @@ export default function SongFeature(props){
 
     return (
         <div>
-            <button onClick={() => toggleFeatureClick()}className={`p-4 m-2 flex text-white text-2xl ${isSelected ? "bg-green-500" : "bg-green-700"}`}>{props.feature.categoryDisplayName}</button>
+            <button onClick={() => toggleFeatureClick()}className={`p-4 m-2 flex text-white text-2xl duration-300 rounded-full transform hover:scale-105 ${isSelected ? "bg-green-500 hover:bg-green-400" : "bg-green-700 hover:bg-green-600"}`}>{props.feature.categoryDisplayName}</button>
         </div>
     )
 }

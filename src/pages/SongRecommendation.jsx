@@ -23,19 +23,12 @@ const SongRecommendation = () => {
 
     const sendFeatureToParent = (feature) => {
       setSongFeaturesSelected(prevFeatures => {
-        const tempSongFeatures = [...prevFeatures]; // Create a copy of the previous state array
-    
-        // Check if the feature is already selected
+        const tempSongFeatures = [...prevFeatures];
         const existingIndex = tempSongFeatures.findIndex(item => item.category === feature.category);
-      
-        // If the feature is already selected, remove it
         if(existingIndex !== -1) {
           tempSongFeatures.splice(existingIndex, 1);
-        } else {
-          // If the feature is not selected, add it
-          tempSongFeatures.push(feature);
-        }
-      
+        } else
+            tempSongFeatures.push(feature);
         return tempSongFeatures;
       });
     }

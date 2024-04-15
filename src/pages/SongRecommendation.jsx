@@ -39,6 +39,15 @@ const SongRecommendation = () => {
         return tempSongFeatures;
       });
     }
+
+    const removeTrackCard = (index) => {
+      setTracksSelected(prevTracksSelected => {
+        let tempTracksSelected = [...prevTracksSelected]
+        tempTracksSelected.splice(index, 1)
+        mapTracksToCard(tempTracksSelected)
+        return tempTracksSelected
+      })
+    }
     
 
     const toggleSongRecModal = () => {
@@ -112,10 +121,12 @@ const SongRecommendation = () => {
 
     const mapTracksToCard = (tracks) => {
         if(tracks.length > 0) {
-            const trackData = tracks.map((track) => {
-              return <TrackCard key={track.id} track={track} previewMusic={true} displayClose={true}/>
+            const trackData = tracks.map((track, index) => {
+              return <TrackCard key={track.id} track={track} previewMusic={true} displayClose={true} index={index} removeTrackCard={removeTrackCard}/>
             })
             setMappedTracks(trackData)
+        } else {
+          setMappedTracks([])
         }
     }
     

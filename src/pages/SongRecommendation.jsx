@@ -8,58 +8,51 @@ import SongAudioFeaturesModal from '../components/SongAudioFeaturesModal';
 
 const SongRecommendation = () => {
     const [tracksSelected, setTracksSelected] = useState([]);
-    const [mappedTracks, setMappedTracks] = useState([])
+    const [mappedTracks, setMappedTracks] = useState([]);
     const [songRecModal, setSongRecModal] = useState(false);
     const [songAudioFeaturesModal, setSongAudioFeaturesModal] = useState(false);
-    const [songFeatures, setSongFeatures] = useState([])
+    const [songFeatures, setSongFeatures] = useState([]);
     const [songFeaturesSelected, setSongFeaturesSelected] = useState([]);
     const [trackList, setTrackList] = useState([]);
-    const [fetching, setFetching] = useState(false)
+    const [fetching, setFetching] = useState(false);
 
     const sendTrackToParent = (tracks) => {
         setTracksSelected(tracks);
-        mapTracksToCard(tracks)
+        mapTracksToCard(tracks);
     }
 
     const sendFeatureToParent = (feature) => {
       setSongFeaturesSelected(prevFeatures => {
-        const tempSongFeatures = [...prevFeatures]; // Create a copy of the previous state array
-    
-        // Check if the feature is already selected
+        const tempSongFeatures = [...prevFeatures];
         const existingIndex = tempSongFeatures.findIndex(item => item.category === feature.category);
-      
-        // If the feature is already selected, remove it
         if(existingIndex !== -1) {
           tempSongFeatures.splice(existingIndex, 1);
-        } else {
-          // If the feature is not selected, add it
-          tempSongFeatures.push(feature);
-        }
-      
+        } else
+            tempSongFeatures.push(feature);
         return tempSongFeatures;
       });
     }
 
     const removeTrackCard = (index) => {
       setTracksSelected(prevTracksSelected => {
-        let tempTracksSelected = [...prevTracksSelected]
-        tempTracksSelected.splice(index, 1)
-        mapTracksToCard(tempTracksSelected)
-        return tempTracksSelected
+        let tempTracksSelected = [...prevTracksSelected];
+        tempTracksSelected.splice(index, 1);
+        mapTracksToCard(tempTracksSelected);
+        return tempTracksSelected;
       })
     }
     
 
     const toggleSongRecModal = () => {
-      setSongFeaturesSelected([])
-      setSongFeatures([])
-      setSongRecModal(!songRecModal)
+      setSongFeaturesSelected([]);
+      setSongFeatures([]);
+      setSongRecModal(!songRecModal);
     }
 
     const toggleSongAudioFeaturesModal = () => {
-      setSongFeaturesSelected([])
-      setSongFeatures([])
-      setSongAudioFeaturesModal(!songAudioFeaturesModal)
+      setSongFeaturesSelected([]);
+      setSongFeatures([]);
+      setSongAudioFeaturesModal(!songAudioFeaturesModal);
     }
 
     const createTrackStringPayload = (tracks) => {
@@ -69,7 +62,7 @@ const SongRecommendation = () => {
 
     const clearSelectedTracks = () => {
         setTracksSelected([]);
-        setMappedTracks([])
+        setMappedTracks([]);
     }
 
     const fetchSongRecs = async () => {
@@ -77,8 +70,8 @@ const SongRecommendation = () => {
             return;
         let trackPayload = createTrackStringPayload(tracksSelected)
         try {
-            setFetching(true)
-            setTrackList([])
+            setFetching(true);
+            setTrackList([]);
             const requestOptions = {
                 method: 'POST',
                 credentials: 'include',
@@ -93,10 +86,10 @@ const SongRecommendation = () => {
               };
             const response = await fetch(`http://localhost:8080/api/songRecs`,requestOptions);
             const data = await response.json();
-            setFetching(false)
-            setSongAudioFeaturesModal(false)
-            setTrackList(data)
-            setSongRecModal(true)
+            setFetching(false);
+            setSongAudioFeaturesModal(false);
+            setTrackList(data);
+            setSongRecModal(true);
             
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -106,14 +99,14 @@ const SongRecommendation = () => {
     const fetchCommonSongFeatures = async () => {
       if(tracksSelected.length < 1)
         return;
-      let trackPayload = createTrackStringPayload(tracksSelected)
+      let trackPayload = createTrackStringPayload(tracksSelected);
       try {
-          setFetching(true)
+          setFetching(true);
           const response = await fetch(`http://localhost:8080/api/songCommonAudioFeatures?tracks=${trackPayload}`, { credentials: 'include' });
           const data = await response.json();
-          setSongAudioFeaturesModal(true)
-          setFetching(false)
-          setSongFeatures(data)
+          setSongAudioFeaturesModal(true);
+          setFetching(false);
+          setSongFeatures(data);
       } catch (error) {
           console.error('Error fetching data:', error);
       }
@@ -122,11 +115,11 @@ const SongRecommendation = () => {
     const mapTracksToCard = (tracks) => {
         if(tracks.length > 0) {
             const trackData = tracks.map((track, index) => {
-              return <TrackCard key={track.id} track={track} previewMusic={true} displayClose={true} index={index} removeTrackCard={removeTrackCard}/>
+              return <TrackCard key={track.id} track={track} previewMusic={true} displayClose={true} index={index} removeTrackCard={removeTrackCard}/>;
             })
-            setMappedTracks(trackData)
+            setMappedTracks(trackData);
         } else {
-          setMappedTracks([])
+          setMappedTracks([]);
         }
     }
     

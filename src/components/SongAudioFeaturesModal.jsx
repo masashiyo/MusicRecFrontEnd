@@ -7,13 +7,13 @@ export default function SongAudioFeaturesModal(props) {
 
   useEffect(() => {
     if(props.songFeaturesSelected.length === 0)
-      setButtonName("Skip Song Features and Get Tracks")
+      setButtonName("Skip Song Features and Get Tracks");
     else 
-      setButtonName("Get Tracks using Song Features")
+      setButtonName("Get Tracks using Song Features");
   },[props.songFeaturesSelected])
 
   useEffect(() => {
-    mapFeaturesToCard(props.songFeatures)
+    mapFeaturesToCard(props.songFeatures);
   })
 
   const mapFeaturesToCard = (features) => {

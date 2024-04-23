@@ -5,6 +5,7 @@ import LoggedIn from './pages/Redirect.jsx'
 import SongRecommendation from './pages/SongRecommendation.jsx';
 import TopSongsAndArtists from './pages/TopSongsAndArtists.jsx';
 import HomePage from './pages/HomePage.jsx';
+import Heardle from './pages/Heardle.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/redirect" element={<LoggedIn/>} />
         <Route path="/topSongsAndArtists" element={<TopSongsAndArtists/>} />
         <Route path="/songRecommendation" element={<SongRecommendation/>}/>
+        <Route path="/heardle" element={<Heardle/>}/>
         <Route  path='*' element={<NoPage/>} />
       </Routes>
     </BrowserRouter>

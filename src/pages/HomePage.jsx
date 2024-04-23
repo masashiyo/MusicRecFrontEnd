@@ -28,7 +28,7 @@ export default function HomePage() {
                   <h2 className="text-2xl font-bold mb-4">Find Duplicate Songs in your Playlists</h2>
                   <p className="text-lg">Clean up your playlsits by removing duplicate songs on every playlist you have.</p>
                 </Link>
-                <Link to="/home" className="bg-gray-900 p-8 rounded-lg shadow-md text-center hover:scale-105 transition-all duration-300">
+                <Link to="/heardle" className="bg-gray-900 p-8 rounded-lg shadow-md text-center hover:scale-105 transition-all duration-300">
                   <h2 className="text-2xl font-bold mb-4">Play a Music Guessing Game</h2>
                   <p className="text-lg">Choose a public playlist and play a guessing game similar to New York Times' famous game, Wordle.</p>
                 </Link>

@@ -14,6 +14,9 @@ export default function NavigationBar() {
             <div className="text-sm">
                 <Link className="block mt-4 lg:mt-0 text-white hover:text-green-100 mr-4" to="/topSongsAndArtists">Top Tracks and Artists</Link>
             </div>
+            <div className="text-sm">
+                <Link className="block mt-4 lg:mt-0 text-white hover:text-green-100 mr-4" to="/heardle">Heardle</Link>
+            </div>
         </nav>
     )
 

@@ -20,8 +20,13 @@ export default function Heardle() {
 
     const mapGuessingTrack = (track) => {
         setTrackGuessing(
-            <TrackCard track={track} previewMusic={false} displayClose={true}/>
+            <TrackCard track={track} previewMusic={false} displayClose={true} removeTrackCard={removeTrackCard}/>
         );
+    }
+
+    const removeTrackCard = () => {
+        setTracksSelected([]);
+        setTrackGuessing([])
     }
 
 

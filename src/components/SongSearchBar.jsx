@@ -9,15 +9,15 @@ const SongSearchBar = (props) => {
 
     const handleChange = (event) => {
         setSearchValue(event.target.value);
-    };
+    }
 
     const handleTrackClick = (track) => {
-        let tempTrackList = props.tracksSelected
+        let tempTrackList = props.tracksSelected;
         if(!tempTrackList.some((trackItem) => trackItem.id === track.id) && tempTrackList.length < 5) {
-            tempTrackList.push(track)
-            props.sendTrackToParent(tempTrackList)
-            setSearchValue('')
-            setSearchResults('')
+            tempTrackList.push(track);
+            props.sendTrackToParent(tempTrackList);
+            setSearchValue('');
+            setSearchResults('');
         }
     }
 
@@ -53,9 +53,9 @@ const SongSearchBar = (props) => {
       let filteredSearchResults = filterDuplicateTracks(rawSearchResults, props.tracksSelected)
         const formattedSearchResults = filteredSearchResults.slice(0,10).map((result, index) => {
           return <SearchResultTile handleTrackClick={handleTrackClick} track={result} key={index}/>
-        })
+        });
         if(formattedSearchResults.length > 0) {
-          setSearchResults(formattedSearchResults)
+          setSearchResults(formattedSearchResults);
         }
     },[rawSearchResults])
     

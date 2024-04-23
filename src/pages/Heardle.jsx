@@ -10,11 +10,18 @@ export default function Heardle() {
     const [currentTrack, setCurrentTrack] = useState([]);
     const [trackGuessing, setTrackGuessing] = useState([]);
     const [guessesLeft, setGuessesLeft] = useState(5);
+
     const sendTrackToParent = (tracks) => {
         let tempTracks = [...tracks];
-        setTracksSelected([])
+        setTracksSelected([]);
         let popped = tempTracks.pop();
-        setTrackGuessing(popped);
+        mapGuessingTrack(popped);
+    }
+
+    const mapGuessingTrack = (track) => {
+        setTrackGuessing(
+            <TrackCard track={track} previewMusic={false} displayClose={false}/>
+        );
     }
 
 
@@ -30,11 +37,8 @@ export default function Heardle() {
                 Number of Tries Left: {guessesLeft}
             </div>
             <SongSearchBar tracksSelected={tracksSelected} sendTrackToParent={sendTrackToParent} />
-            {trackGuessing.length > 0 && trackGuessing.map((result, index) => {
-                console.log(result);
-                return (<TrackCard track={result} key={index}/>)
-            })}
-            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded mt-2 rounded-full shadow-md transition duration-300 transform hover:scale-105 mt-12">
+            {trackGuessing}
+            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded mt-12 rounded-full shadow-md transition duration-300 transform hover:scale-105 mt-12">
                 Submit Guess
             </button>
         </div>

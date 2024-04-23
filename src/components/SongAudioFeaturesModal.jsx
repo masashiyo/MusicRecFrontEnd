@@ -3,17 +3,17 @@ import SongFeature from "./SongFeature";
 
 export default function SongAudioFeaturesModal(props) {
   const [buttonName, setButtonName] = useState("Skip Song Features and Get Tracks");
-  const [mappedFeatures, setMappedFeatures] = useState([])
+  const [mappedFeatures, setMappedFeatures] = useState([]);
 
   useEffect(() => {
     if(props.songFeaturesSelected.length === 0)
-      setButtonName("Skip Song Features and Get Tracks")
+      setButtonName("Skip Song Features and Get Tracks");
     else 
-      setButtonName("Get Tracks using Song Features")
+      setButtonName("Get Tracks using Song Features");
   },[props.songFeaturesSelected])
 
   useEffect(() => {
-    mapFeaturesToCard(props.songFeatures)
+    mapFeaturesToCard(props.songFeatures);
   })
 
   const mapFeaturesToCard = (features) => {
@@ -21,9 +21,9 @@ export default function SongAudioFeaturesModal(props) {
       const featureData = features.map((feature, index) => {
         return <SongFeature feature={feature} key={index} sendFeatureToParent={props.sendFeatureToParent}/>
       })
-      setMappedFeatures(featureData)
+      setMappedFeatures(featureData);
     } else {
-       setMappedFeatures([])
+       setMappedFeatures([]);
     }
   }
 

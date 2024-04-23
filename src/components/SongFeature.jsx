@@ -1,11 +1,11 @@
 import React, {useState, useEffect, useContext} from "react";
 
 export default function SongFeature(props){
-    const [isSelected, setIsSelected] = useState(false)
+    const [isSelected, setIsSelected] = useState(false);
 
     const toggleFeatureClick = () => {
-        setIsSelected(!isSelected)
-        props.sendFeatureToParent(props.feature)
+        setIsSelected(!isSelected);
+        props.sendFeatureToParent(props.feature);
     }
 
     return (

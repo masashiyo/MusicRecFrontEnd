@@ -134,7 +134,7 @@ export default function Heardle() {
             <div className="w-[40%] mt-12">
                 {trackGuessing}
             </div>
-            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 rounded mt-12 rounded-full shadow-md transition duration-300 transform hover:scale-105 mt-12">
+            <button className="bg-green-500 hover:bg-green-400 text-white font-bold py-3 px-6 my-12 rounded-full shadow-md transition duration-300 transform hover:scale-105">
                 Submit Guess
             </button>
         </div>

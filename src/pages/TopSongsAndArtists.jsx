@@ -89,15 +89,15 @@ return (
       <h1 className="text-6xl mb-12 mt-8">Most Listened to Artists and Tracks</h1>
       <div className="trackAndArtistNumber flex justify-center mb-8">
         <label className="mr-8">
-          Short Term&nbsp;&nbsp;
+          Last 4 Weeks&nbsp;&nbsp;
           <input type="radio" id="shortTerm" name="term" value="short_term" checked={selectedTerm === 'short_term'} onChange={handleTermChange} />
         </label>
         <label className="mr-8">
-          Medium Term&nbsp;&nbsp;
+          Last 6 Months&nbsp;&nbsp;
           <input type="radio" id="mediumTerm" name="term" value="medium_term" checked={selectedTerm === 'medium_term'} onChange={handleTermChange} />
         </label>
         <label>
-          Long Term&nbsp;&nbsp;
+          Last 12 Months&nbsp;&nbsp;
           <input type="radio" id="longTerm" name="term" value="long_term" checked={selectedTerm === 'long_term'} onChange={handleTermChange} />
         </label>
       </div>
